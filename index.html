@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi persona favorita ❤️</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --dark-pink: #ff4b2b;
+            --soft-white: #ffffff;
+            --romantic-purple: #9b59b6;
+            --light-purple: #c39bd3;
+            --deep-purple: #6c3483;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff0f3 0%, #f8e6ff 30%, #ffc1cc 70%, #e8d5f2 100%);
+            color: #4a4a4a;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Lluvia de corazones */
+        .heart-particle {
+            position: fixed;
+            top: -10%;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1000;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--dark-pink), var(--romantic-purple), var(--dark-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(156, 89, 182, 0.2);
+        }
+
+        .collage-container {
+            width: 100vw;
+            height: 45vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 175, 189, 0.1), rgba(195, 157, 211, 0.1));
+            box-shadow: 0 20px 40px rgba(255, 75, 43, 0.3);
+        }
+
+        .collage-item {
+            position: absolute;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(156, 89, 182, 0.3);
+            transition: all 0.4s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            filter: brightness(1.05) contrast(1.1);
+            display: block;
+        }
+
+        .collage-item:hover {
+            transform: scale(1.05) rotate(1deg);
+            z-index: 10;
+            box-shadow: 0 15px 40px rgba(255, 75, 43, 0.5);
+        }
+
+        .collage-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1) contrast(1.2);
+        }
+
+        .main-photo {
+            width: 50%;
+            height: 80%;
+            top: 10%;
+            left: 5%;
+            border-radius: 20px;
+            transform: rotate(-2deg);
+            animation-delay: 0s;
+        }
+
+        .photo-1 {
+            width: 25%;
+            height: 35%;
+            top: 5%;
+            right: 8%;
+            border-radius: 15px;
+            transform: rotate(3deg);
+            animation-delay: 0.5s;
+        }
+
+        .photo-2 {
+            width: 30%;
+            height: 40%;
+            top: 45%;
+            right: 5%;
+            border-radius: 18px;
+            transform: rotate(-1deg);
+            animation-delay: 1s;
+        }
+
+        .photo-3 {
+            width: 35%;
+            height: 30%;
+            bottom: 5%;
+            left: 35%;
+            border-radius: 12px;
+            transform: rotate(2deg);
+            animation-delay: 1.5s;
+        }
+
+        .collage-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 182, 193, 0.2) 50%,
+                    rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .valentine-banner {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 182, 193, 0.8));
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--deep-purple);
+            box-shadow: 0 8px 20px rgba(255, 75, 43, 0.3);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            border: 2px solid white;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatHeart 4s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatHeart {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            25% {
+                transform: translateY(-15px) rotate(5deg);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(-5deg);
+                opacity: 1;
+            }
+
+            75% {
+                transform: translateY(-15px) rotate(3deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Botones con latido */
+        .surprise-btn {
+            background: linear-gradient(135deg, white, var(--light-purple));
+            color: var(--deep-purple);
+            border: 2px solid var(--romantic-purple);
+            padding: 18px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 15px 0;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(156, 89, 182, 0.2);
+            animation: pulse 2s infinite;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .surprise-btn.hidden {
+            display: none;
+        }
+
+        .music-control-btn {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(196, 69, 105, 0.3);
+            animation: pulse 2.5s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .music-control-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(196, 69, 105, 0.4);
+        }
+
+        .music-control-btn.playing {
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            animation: musicPulse 1s infinite;
+        }
+
+        @keyframes musicPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 25px rgba(156, 89, 182, 0.4);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .hidden-content {
+            display: none;
+            margin: 20px auto;
+            max-width: 95%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(195, 157, 211, 0.2));
+            padding: 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            border: 1px solid rgba(156, 89, 182, 0.1);
+        }
+
+        .tv-frame {
+            position: relative;
+            background: linear-gradient(135deg, #2c1810 0%, #4a2c1a 50%, #2c1810 100%);
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tv-frame::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 8px;
+            background: linear-gradient(90deg, #1a1a1a, #333, #1a1a1a);
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .tv-screen {
+            position: relative;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow:
+                inset 0 0 20px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(156, 89, 182, 0.4);
+        }
+
+        audio,
+        video {
+            width: 100%;
+            height: 400px;
+            display: block;
+            border-radius: 15px;
+            object-fit: contain;
+            background: rgba(255, 240, 243, 0.95);
+        }
+
+        .tv-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 10px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .tv-knob {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--romantic-purple);
+            text-shadow: 0 0 10px rgba(156, 89, 182, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tv-knob:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 15px rgba(156, 89, 182, 1);
+        }
+
+        .post-video-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 700px;
+            background: linear-gradient(135deg,
+                    rgba(255, 182, 193, 0.1) 0%,
+                    rgba(195, 157, 211, 0.08) 50%,
+                    rgba(255, 192, 203, 0.1) 100%);
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(196, 17, 106, 0.2);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15);
+            animation: slideIn 1.5s ease-out, heartbeat 2s ease-in-out infinite;
+            position: relative;
+            overflow: visible;
+            z-index: 100;
+            position: sticky;
+            top: 50px;
+        }
+
+        .post-video-message::before {
+            content: '💝';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 3rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            opacity: 0.8;
+            z-index: 3;
+        }
+
+        .post-video-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--deep-purple);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 10;
+            text-shadow: 0 3px 6px rgba(255, 105, 180, 0.3);
+            opacity: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-width: 100%;
+            min-height: 140px;
+            display: block;
+            visibility: visible;
+            background: transparent;
+        }
+
+        .post-video-text.typing {
+            opacity: 1;
+        }
+
+        .post-video-text.waiting {
+            opacity: 1;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--romantic-purple);
+            font-style: italic;
+            text-shadow: 0 2px 4px rgba(156, 89, 182, 0.2);
+            animation: gentlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulse {
+
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--deep-purple)
+            }
+        }
+
+        .post-video-hearts {
+            font-size: 2rem;
+            margin: 20px 0;
+            animation: float 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.1);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(1.05);
+            }
+        }
+
+        .text-center {
+            display: block;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1
+            }
+
+            51%,
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Popup modal styles */
+        .video-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .video-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 30%, #9c27b0 60%, #7b1fa2 100%);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow:
+                0 25px 50px rgba(156, 39, 176, 0.4),
+                0 15px 30px rgba(118, 75, 162, 0.3),
+                inset 0 3px 7px rgba(255, 255, 255, 0.2),
+                inset 0 -3px 7px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease-out, romanticGlow 3s ease-in-out infinite;
+            border: 3px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .popup-content::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 12px;
+            background: linear-gradient(90deg, #d81b60, #f8bbd0, #d81b60);
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 15px rgba(216, 27, 96, 0.5);
+        }
+
+        .popup-content::after {
+            content: '🌹🌻🌹';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            animation: floatFlowers 4s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .popup-video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            max-height: 70vh;
+            border-radius: 20px;
+            object-fit: contain;
+            background: linear-gradient(135deg, rgba(255, 240, 243, 0.95), rgba(253, 216, 224, 0.95));
+            box-shadow:
+                0 10px 25px rgba(156, 39, 176, 0.3),
+                inset 0 2px 5px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px) scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes romanticGlow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 25px 50px rgba(156, 39, 176, 0.4),
+                    0 15px 30px rgba(118, 75, 162, 0.3),
+                    inset 0 3px 7px rgba(255, 255, 255, 0.2),
+                    inset 0 -3px 7px rgba(0, 0, 0, 0.3),
+                    0 0 30px rgba(233, 30, 99, 0.2);
+            }
+
+            50% {
+                box-shadow:
+                    0 25px 50px rgba(156, 39, 176, 0.6),
+                    0 15px 30px rgba(118, 75, 162, 0.5),
+                    inset 0 3px 7px rgba(255, 255, 255, 0.3),
+                    inset 0 -3px 7px rgba(0, 0, 0, 0.3),
+                    0 0 50px rgba(233, 30, 99, 0.4);
+            }
+        }
+
+        @keyframes floatFlowers {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(-5deg);
+            }
+
+            25% {
+                transform: translateX(-50%) translateY(-8px) rotate(5deg);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-12px) rotate(-3deg);
+            }
+
+            75% {
+                transform: translateX(-50%) translateY(-6px) rotate(3deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .popup-content {
+                padding: 15px;
+                margin: 10px;
+                max-width: 95%;
+            }
+
+            .popup-content::before {
+                width: 40px;
+                height: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tv-frame {
+                padding: 15px;
+                margin: 0 10px;
+            }
+
+            .tv-frame::before {
+                width: 40px;
+                height: 6px;
+            }
+
+            .tv-controls {
+                gap: 10px;
+            }
+
+            .tv-knob {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tv-frame {
+                padding: 10px;
+                border-radius: 20px;
+            }
+
+            .hidden-content {
+                padding: 15px;
+                margin: 15px 5px;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 40px 20px;
+                margin-top: 60px;
+                position: relative;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 182, 193, 0.2));
+                border-radius: 30px;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 15px 35px rgba(255, 75, 43, 0.2);
+            }
+
+            .footer-text {
+                font-family: 'Dancing Script', cursive;
+                font-size: 2rem;
+                background: linear-gradient(45deg, var(--dark-pink), var(--romantic-purple), var(--dark-pink));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 15px;
+                animation: pulse 3s infinite;
+                line-height: 1.3;
+            }
+
+            .footer-date {
+                font-size: 1.2rem;
+                color: var(--deep-purple);
+                font-weight: bold;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin-top: 10px;
+            }
+
+            .footer-hearts {
+                font-size: 1.5rem;
+                margin: 15px 0;
+                animation: float 2s ease-in-out infinite;
+            }
+        }
+
+        padding: 15px;
+        margin: 0 10px;
+        }
+
+        .tv-frame::before {
+            width: 40px;
+            height: 6px;
+        }
+
+        .tv-controls {
+            gap: 10px;
+        }
+
+        .tv-knob {
+            width: 20px;
+            height: 20px;
+        }
+        }
+
+        @media (max-width: 480px) {
+            .tv-frame {
+                padding: 10px;
+                border-radius: 20px;
+            }
+
+            .hidden-content {
+                padding: 15px;
+                margin: 15px 5px;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 40px 20px;
+                margin-top: 60px;
+                position: relative;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 182, 193, 0.2));
+                border-radius: 30px;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 15px 35px rgba(255, 75, 43, 0.2);
+            }
+
+            .footer-text {
+                font-family: 'Dancing Script', cursive;
+                font-size: 2rem;
+                background: linear-gradient(45deg, var(--dark-pink), var(--romantic-purple), var(--dark-pink));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 15px;
+                animation: pulse 3s infinite;
+                line-height: 1.3;
+            }
+
+            .footer-date {
+                font-size: 1.2rem;
+                color: var(--deep-purple);
+                font-weight: bold;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin-top: 10px;
+            }
+
+            .footer-hearts {
+                font-size: 1.5rem;
+                margin: 15px 0;
+                animation: float 2s ease-in-out infinite;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="collage-container">
+        <div class="valentine-banner"> Feliz San Valentín Amycita ❤️
+        </div>
+        <div class="floating-hearts">
+            <div class="floating-heart" style="top: 15%; left: 10%; animation-delay: 0s;"> </div>
+            <div class="floating-heart" style="top: 25%; right: 15%; animation-delay: 0.5s;"> </div>
+            <div class="floating-heart" style="top: 60%; left: 20%; animation-delay: 1s;"> </div>
+            <div class="floating-heart" style="top: 70%; right: 25%; animation-delay: 1.5s;"> </div>
+            <div class="floating-heart" style="top: 40%; left: 45%; animation-delay: 2s;"> </div>
+        </div>
+        <div class="collage-item main-photo">
+            <img src="/assets/aa-cix.jpeg" alt="Nosotros">
+        </div>
+        <div class="collage-item photo-1">
+            <img src="/assets/aa-moto.jpeg" alt="Momento 1">
+        </div>
+        <div class="collage-item photo-2">
+            <img src="/assets/aa-promo.jpeg" alt="Momento 2">
+        </div>
+        <div class="collage-item photo-3">
+            <img src="/assets/aa-cine.jpeg" alt="Momento 3">
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Con todo mi amor </h1>
+
+        <!-- <p style="font-size: 1.2rem;"><i>"Un detalle pequeño para la persona más grande de mi vida."</i></p> -->
+        <p style="font-size: 1.2rem;"><i>"Este ramo de rosas es solo un pequeño detalle comparado con todo el amor que
+                siento por ti. Quería que esta sorpresa fuera tan especial como tú."</i></p>
+
+        <!--    <div class="surprise-btn" onclick="toggleContent('audio-box')"> Toca para escucharme</div>
+        <div id="audio-box" class="hidden-content">
+            <div class="tv-frame">
+                <div class="tv-screen">
+                    <audio controls>
+                        <source src="mi_audio.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="tv-controls">
+                    <div class="tv-knob"> </div>
+                    <div class="tv-knob"> </div>
+                    <div class="tv-knob"> </div>
+                </div>
+            </div>
+        </div> -->
+
+        <br>
+
+        <!-- Botón de control de música -->
+        <!--   <div class="music-control-btn" id="music-btn" onclick="toggleMusic()">
+            <span id="music-icon">🎵</span> Música
+        </div> -->
+
+        <div class="surprise-btn" id="video-btn" onclick="openVideoPopup()">📽️ Descubre nuestros momentos juntos aquí
+        </div>
+
+        <!-- Video popup modal -->
+        <div id="video-popup" class="video-popup">
+            <div class="popup-content">
+                <video id="love-video" class="popup-video" controls poster="/assets/cine.jpeg" onended="onVideoEnded()">
+                    <source src="/assets/video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div id="post-video-message" class="post-video-message">
+            <div class="post-video-hearts"> </div>
+            <div class="post-video-text">
+                "Si ya hicimos lo más difícil que fue,<br>
+                encontrarnos entre millones de personas,<br>
+                ahora hagamos lo fácil, cuidarnos,<br>
+                amarnos y nunca dejarnos ir."<br>
+                <span class="text-center">❤️😊</span>
+            </div>
+            <div class="post-video-hearts"> </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-hearts"> </div>
+            <div class="footer-text">"Por muchos San Valentín más,<br>siempre estaré para ti"</div>
+            <div class="footer-date">14 . 02 . 2026</div>
+            <div class="footer-hearts"> </div>
+        </div>
+    </div>
+
+    <audio id="background-music" loop autoplay>
+        <source src="/assets/background-music.mp3" type="audio/mpeg">
+        <source src="/assets/background-music.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+        // Inicializar música de fondo
+        const backgroundMusic = document.getElementById('background-music');
+        let isMusicPlaying = false;
+
+        // Función para iniciar la música de fondo cuando la página carga
+        window.addEventListener('load', () => {
+            // Forzar reproducción automática de música
+            const playMusic = () => {
+                backgroundMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    console.log('Música reproduciéndose automáticamente');
+                }).catch(e => {
+                    console.log('Error al reproducir música:', e);
+                    // Si falla, mostrar mensaje al usuario
+                    showMusicHelp();
+                });
+            };
+
+            // Intentar reproducción inmediata
+            playMusic();
+
+            // Si falla, intentar después de 1 segundo
+            setTimeout(playMusic, 1000);
+
+            // Si aún falla, intentar después de 2 segundos con interacción simulada
+            setTimeout(() => {
+                if (!isMusicPlaying) {
+                    // Crear una interacción simulada para desbloquear el audio
+                    document.addEventListener('click', function initAudio() {
+                        if (!isMusicPlaying) {
+                            playMusic();
+                        }
+                    }, { once: true });
+
+                    // Mostrar mensaje de ayuda
+                    showMusicHelp();
+                }
+            }, 2000);
+        });
+
+        // Función para mostrar ayuda de música
+        function showMusicHelp() {
+            const helpText = document.createElement('div');
+            helpText.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #ff6b9d, #c44569);
+                color: white;
+                padding: 10px 15px;
+                border-radius: 20px;
+                font-family: 'Dancing Script', cursive;
+                font-size: 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.5s ease-out;
+                cursor: pointer;
+            `;
+            helpText.innerHTML = '🎵 Haz clic para música';
+            helpText.onclick = () => {
+                backgroundMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    helpText.remove();
+                }).catch(e => {
+                    console.log('Error al reproducir música:', e);
+                });
+            };
+
+            document.body.appendChild(helpText);
+
+            // Ocultar mensaje después de 5 segundos
+            setTimeout(() => {
+                if (helpText.parentNode) {
+                    helpText.remove();
+                }
+            }, 5000);
+        }
+
+        // Función para abrir el popup del video
+        function openVideoPopup() {
+            const popup = document.getElementById('video-popup');
+            const video = document.getElementById('love-video');
+            const btn = document.getElementById('video-btn');
+
+            // Ocultar el botón
+            btn.classList.add('hidden');
+
+            // Pausar música de fondo
+            backgroundMusic.pause();
+
+            // Mostrar el popup
+            popup.classList.add('active');
+
+            // Reproducir el video
+            video.play();
+        }
+
+        // Función para cerrar el popup del video
+        function closeVideoPopup() {
+            const popup = document.getElementById('video-popup');
+            const video = document.getElementById('love-video');
+
+            // Ocultar el popup
+            popup.classList.remove('active');
+
+            // Pausar y resetear el video
+            video.pause();
+            video.currentTime = 0;
+
+            // Reanudar música de fondo
+            backgroundMusic.play().then(() => {
+                isMusicPlaying = true;
+                console.log('Música reanudada automáticamente');
+            }).catch(e => {
+                console.log('Error al reanudar música:', e);
+            });
+        }
+
+        // Función que se ejecuta cuando el video termina
+        function onVideoEnded() {
+            // Cerrar el popup
+            closeVideoPopup();
+
+            // Reanudar música de fondo
+            backgroundMusic.play().catch(e => {
+                console.log('Error al reanudar música:', e);
+            });
+
+            // Mostrar el mensaje posterior al video
+            showPostVideoMessage();
+        }
+
+        // Función para mostrar/ocultar (mantener para compatibilidad)
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            const isVisible = content.style.display === "block";
+            content.style.display = isVisible ? "none" : "block";
+
+            // Si se está mostrando el video, ocultar el botón permanentemente
+            if (id === 'video-box' && !isVisible) {
+                hideVideoButton();
+            }
+        }
+
+        // Función para mostrar el botón del video
+        function showVideoButton() {
+            const btn = document.getElementById('video-btn');
+            if (btn) {
+                btn.classList.remove('hidden');
+            }
+        }
+
+        // Función para ocultar el botón del video
+        function hideVideoButton() {
+            const btn = document.getElementById('video-btn');
+            if (btn) {
+                btn.classList.add('hidden');
+            }
+        }
+
+        // Función para mostrar mensaje después del video
+        function showPostVideoMessage() {
+            setTimeout(() => {
+                const message = document.getElementById('post-video-message');
+                const postVideoText = document.querySelector('.post-video-text');
+
+                // Texto completo para escribir letra por letra
+                const fullText = '" Si ya hicimos lo más difícil que fue,\n encontrarnos entre millones de personas,\n ahora hagamos lo fácil, cuidarnos,\n amarnos y nunca dejarnos ir. ❤️😊"';
+
+                // Ocultar el popup (ya está cerrado por onVideoEnded)
+                // videoBox ya no existe, se usa el popup
+
+                // Mostrar el mensaje
+                message.style.display = 'block';
+
+                // Mostrar mensaje de espera
+                postVideoText.innerHTML = 'Espera, quiero decirte algo...';
+                postVideoText.classList.add('waiting');
+
+                let currentCharIndex = 0;
+
+                function typeChar() {
+                    if (currentCharIndex < fullText.length) {
+                        // Si es el primer carácter, cambiar de waiting a typing
+                        if (currentCharIndex === 0) {
+                            postVideoText.classList.remove('waiting');
+                            postVideoText.classList.add('typing');
+                            postVideoText.innerHTML = '';
+                        }
+
+                        // Agregar el carácter actual
+                        postVideoText.innerHTML = fullText.substring(0, currentCharIndex + 1);
+                        currentCharIndex++;
+
+                        // Mantener el mensaje visible durante la escritura
+                        message.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+
+                        // Velocidad variable para más naturalidad
+                        let delay = 80; // velocidad base
+
+                        // Pausas más largas después de comas y puntos
+                        const currentChar = fullText[currentCharIndex - 1];
+                        if (currentChar === ',') delay = 200;
+                        if (currentChar === '.') delay = 300;
+                        if (currentChar === '\n') delay = 400;
+
+                        setTimeout(typeChar, delay);
+                    } else {
+                        // Terminó de escribir
+                        postVideoText.classList.add('typing-done');
+
+                        // Asegurar que el mensaje final quede centrado
+                        setTimeout(() => {
+                            message.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }, 500);
+                    }
+                }
+
+                // Esperar 2 segundos antes de empezar a escribir el mensaje real
+                setTimeout(typeChar, 2000);
+
+                // Mostrar nuevamente el botón del video
+                showVideoButton();
+
+                // Hacer scroll suave hacia el mensaje
+                message.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                // Crear lluvia de corazones especial después de un momento
+                setTimeout(() => {
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => createSpecialHeart(), i * 150);
+                    }
+                }, 5000);
+            }, 1000); // Demora inicial de 1 segundo después que termina el video
+        }
+
+        // Crear corazones especiales después del video
+        function createSpecialHeart() {
+            const hearts = ['💕', '💖', '🌹', '🌻'];
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        // Generador de flores y corazones
+        function createFlower() {
+            const flowers = ['❤️', '🌹', '🌻', '💕', '💖'];
+            const flower = document.createElement('div');
+            flower.classList.add('heart-particle');
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 2 + 's';
+            flower.style.opacity = Math.random();
+            flower.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.body.appendChild(flower);
+
+            setTimeout(() => { flower.remove(); }, 5000);
+        }
+        setInterval(createFlower, 300);
+    </script>
+</body>
+
+</html>

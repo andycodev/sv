@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi persona favorita ❤️</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --dark-pink: #ff4b2b;
+            --soft-white: #ffffff;
+            --romantic-purple: #9b59b6;
+            --light-purple: #c39bd3;
+            --deep-purple: #6c3483;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff0f3 0%, #f8e6ff 30%, #ffc1cc 70%, #e8d5f2 100%);
+            color: #4a4a4a;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Lluvia de corazones */
+        .heart-particle {
+            position: fixed;
+            top: -10%;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1000;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--dark-pink), var(--romantic-purple), var(--dark-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(156, 89, 182, 0.2);
+        }
+
+        .main-img {
+            width: 85%;
+            max-width: 300px;
+            border-radius: 30px;
+            border: 5px solid white;
+            box-shadow: 0 15px 35px rgba(255, 75, 43, 0.2);
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Botones con latido */
+        .surprise-btn {
+            background: linear-gradient(135deg, white, var(--light-purple));
+            color: var(--deep-purple);
+            border: 2px solid var(--romantic-purple);
+            padding: 18px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 15px 0;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(156, 89, 182, 0.2);
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 25px rgba(156, 89, 182, 0.4);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .hidden-content {
+            display: none;
+            margin: 20px auto;
+            max-width: 95%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(195, 157, 211, 0.2));
+            padding: 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            border: 1px solid rgba(156, 89, 182, 0.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Music Player Romántico */
+        .music-player {
+            position: relative;
+            background: linear-gradient(135deg, #4a2c1a 0%, #6c3483 50%, #4a2c1a 100%);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .music-player::before {
+            content: '🎵';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: var(--romantic-purple);
+            text-shadow: 0 0 15px rgba(156, 89, 182, 0.8);
+        }
+
+        .vinyl-record {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #1a1a1a 30%, #333 40%, #1a1a1a 50%, #ff6b9d 51%, #1a1a1a 52%, #333 60%, #1a1a1a 70%);
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.8);
+            animation: spin 3s linear infinite paused;
+        }
+
+        .vinyl-record.playing {
+            animation-play-state: running;
+        }
+
+        .vinyl-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--romantic-purple);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(156, 89, 182, 0.8);
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--light-purple), var(--romantic-purple));
+            border: 2px solid var(--deep-purple);
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(156, 89, 182, 0.3);
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(156, 89, 182, 0.5);
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 25px;
+            color: var(--romantic-purple);
+            animation: float 2s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .music-note.active {
+            opacity: 1;
+        }
+
+        .note1 { top: -30px; left: 20%; animation-delay: 0s; }
+        .note2 { top: -40px; left: 50%; animation-delay: 0.5s; }
+        .note3 { top: -30px; left: 80%; animation-delay: 1s; }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* TV Frame para video */
+        .tv-frame {
+            position: relative;
+            background: linear-gradient(135deg, #2c1810 0%, #4a2c1a 50%, #2c1810 100%);
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .tv-frame::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 8px;
+            background: linear-gradient(90deg, #1a1a1a, #333, #1a1a1a);
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .tv-screen {
+            position: relative;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow:
+                inset 0 0 20px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(156, 89, 182, 0.4);
+        }
+
+        audio,
+        video {
+            width: 100%;
+            height: 400px;
+            display: block;
+            border-radius: 15px;
+            object-fit: cover;
+            background: rgba(255, 240, 243, 0.95);
+        }
+
+        .tv-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 10px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .tv-knob {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--romantic-purple);
+            text-shadow: 0 0 10px rgba(156, 89, 182, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tv-knob:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 15px rgba(156, 89, 182, 1);
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dark-pink);
+        }
+
+        @media (max-width: 768px) {
+            .tv-frame {
+                padding: 15px;
+                margin: 0 10px;
+            }
+
+            .tv-frame::before {
+                width: 40px;
+                height: 6px;
+            }
+
+            .tv-controls {
+                gap: 10px;
+            }
+
+            .tv-knob {
+                width: 20px;
+                height: 20px;
+            }
+
+            .music-player {
+                padding: 20px;
+            }
+
+            .vinyl-record {
+                width: 150px;
+                height: 150px;
+            }
+
+            .music-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tv-frame {
+                padding: 10px;
+                border-radius: 20px;
+            }
+
+            .hidden-content {
+                padding: 15px;
+                margin: 15px 5px;
+            }
+
+            .music-player {
+                padding: 15px;
+            }
+
+            .vinyl-record {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Para mi Amor ❤️</h1>
+
+        <img src="/assets/all.jpeg" alt="Nosotros" class="main-img">
+
+        <p style="font-size: 1.2rem;"><i>"Un detalle pequeño para la persona más grande de mi vida."</i></p>
+
+        <div class="surprise-btn" onclick="toggleContent('audio-box')">🔊 Toca para escucharme</div>
+        <div id="audio-box" class="hidden-content">
+            <div class="music-player">
+                <div class="music-note note1">🎵</div>
+                <div class="music-note note2">🎶</div>
+                <div class="music-note note3">🎵</div>
+                <div class="vinyl-record" id="vinyl">
+                    <div class="vinyl-center"></div>
+                </div>
+                <div class="music-controls">
+                    <div class="music-btn" onclick="toggleMusic()">▶️</div>
+                    <div class="music-btn" onclick="toggleMusic()">⏸️</div>
+                    <div class="music-btn">❤️</div>
+                </div>
+                <audio id="audio-player" style="display: none;">
+                    <source src="mi_audio.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="surprise-btn" onclick="toggleContent('video-box')">🎬 Nuestros momentos juntos aquí</div>
+        <div id="video-box" class="hidden-content">
+            <div class="tv-frame">
+                <div class="tv-screen">
+                    <video controls poster="/assets/cine.jpeg">
+                        <source src="/assets/video.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="tv-controls">
+                    <div class="tv-knob">❤️</div>
+                    <div class="tv-knob">💕</div>
+                    <div class="tv-knob">💖</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            SIEMPRE ESTARÉ PARA TI <br> <b>14 . 02 . 2026</b>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.style.display = (content.style.display === "block") ? "none" : "block";
+        }
+
+        // Función para controlar la música
+        function toggleMusic() {
+            const audio = document.getElementById('audio-player');
+            const vinyl = document.getElementById('vinyl');
+            const notes = document.querySelectorAll('.music-note');
+            
+            if (audio.paused) {
+                audio.play();
+                vinyl.classList.add('playing');
+                notes.forEach(note => note.classList.add('active'));
+            } else {
+                audio.pause();
+                vinyl.classList.remove('playing');
+                notes.forEach(note => note.classList.remove('active'));
+            }
+        }
+
+        // Generador de flores y corazones
+        function createFlower() {
+            const flowers = ['❤️', '🌹', '🌻', '💕', '🌸', '💖'];
+            const flower = document.createElement('div');
+            flower.classList.add('heart-particle');
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 2 + 's';
+            flower.style.opacity = Math.random();
+            flower.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.body.appendChild(flower);
+
+            setTimeout(() => { flower.remove(); }, 5000);
+        }
+        setInterval(createFlower, 300);
+    </script>
+</body>
+
+</html>
